@@ -1,4 +1,4 @@
-package org.venutolo;
+package org.venutolo.spring.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
