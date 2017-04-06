@@ -20,10 +20,10 @@ public class FormUserValidator implements Validator {
     @Override
     public void validate(final Object target, final Errors errors) {
         final FormUser user = (FormUser) target;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "error.firstName","DEFAULT First name is required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "error.lastName", "DEFAULT Last name is required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "error.firstName.empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "error.lastName.empty");
         if ((user.getAge() < MIN_AGE) || (user.getAge() > MAX_AGE)) {
-            errors.rejectValue("age", "error.age", "DEFAULT Age must be between " + MIN_AGE + " and " + MAX_AGE);
+            errors.rejectValue("age", "error.age.minMax", new Object[]{MIN_AGE, MAX_AGE}, "");
         }
     }
 
