@@ -12,12 +12,12 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
-public class ExampleCommandLineRunner {
+public class ExampleApplication {
 
-    private static final Log logger = LogFactory.getLog(ExampleCommandLineRunner.class);
+    private static final Log logger = LogFactory.getLog(ExampleApplication.class);
 
     public static void main(final String... args) {
-        SpringApplication.run(ExampleCommandLineRunner.class, args);
+        SpringApplication.run(ExampleApplication.class, args);
     }
 
     @Bean
