@@ -1,4 +1,4 @@
-package org.venutolo.spring.test;
+package org.venutolo.spring.test.rest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

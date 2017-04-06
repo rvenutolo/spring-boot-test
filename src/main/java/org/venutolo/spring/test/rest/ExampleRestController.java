@@ -1,4 +1,4 @@
-package org.venutolo.spring.test;
+package org.venutolo.spring.test.rest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

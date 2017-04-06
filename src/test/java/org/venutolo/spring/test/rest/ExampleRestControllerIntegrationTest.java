@@ -1,4 +1,4 @@
-package org.venutolo.spring.test;
+package org.venutolo.spring.test.rest;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
