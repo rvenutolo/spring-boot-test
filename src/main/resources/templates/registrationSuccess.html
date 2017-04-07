@@ -6,10 +6,10 @@
     </head>
     <body>
         <h1 th:text="#{success.header}">success header</h1>
-        <p th:text="#{user.firstName.label} + ' &quot;' + ${user.firstName} + '&quot;'"></p>
-        <p th:text="#{user.lastName.label} + ' &quot;' + ${user.lastName} + '&quot;'"></p>
-        <p th:text="#{user.age.label} + ' ' + ${user.age}"></p>
-        <p th:text="#{user.height.label} + ' ' + ${user.height}"></p>
+        <p th:text="#{user.firstName.label} + ' &quot;' + ${user.firstName} + '&quot;'">first name</p>
+        <p th:text="#{user.lastName.label} + ' &quot;' + ${user.lastName} + '&quot;'">last name</p>
+        <p th:text="#{user.age.label} + ' ' + ${user.age}">age</p>
+        <p th:text="#{user.height.label} + ' ' + ${user.height}">height</p>
         <a href="/register" th:text="#{success.register.another.text}">Register another user</a>
     </body>
 </html>
