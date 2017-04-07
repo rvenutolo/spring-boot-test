@@ -1,0 +1,7 @@
+form input.error {
+    border-color: red;
+}
+
+form h3.error {
+    color: red;
+}
