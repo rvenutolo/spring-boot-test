@@ -28,7 +28,7 @@ public class UserRegistrationController {
     @GetMapping
     public String registrationForm(final Model model) {
         model.addAttribute("user", new UserRegistrationInput());
-        return "registrationForm";
+        return "registration/registrationForm";
     }
 
     @PostMapping
@@ -40,11 +40,11 @@ public class UserRegistrationController {
         validator.validate(userRegistrationInput, errors);
         if (errors.hasErrors()) {
             logger.debug("User is invalid: " + userRegistrationInput);
-            return "registrationForm";
+            return "registration/registrationForm";
         }
         logger.debug("User is valid: " + userRegistrationInput);
         // TODO session status? set complete?
-        return "registrationSuccess";
+        return "registration/registrationSuccess";
     }
 
 }
