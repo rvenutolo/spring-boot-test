@@ -25,7 +25,7 @@ public class ExampleApplication {
         return args -> {
             final String beans = Arrays.stream(applicationContext.getBeanDefinitionNames())
                                        .sorted()
-                                       .collect(Collectors.joining("\n\t\t", "[\n", "\n]"));
+                                       .collect(Collectors.joining("\n\t\t", "[\n\t\t", "\n]"));
             logger.info("Spring Boot beans: " + beans);
         };
     }
