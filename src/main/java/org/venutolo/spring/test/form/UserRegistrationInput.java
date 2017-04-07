@@ -8,6 +8,8 @@ public class UserRegistrationInput {
 
     private String age;
 
+    private String height;
+
     public String getFirstName() {
         return firstName;
     }
@@ -32,12 +34,21 @@ public class UserRegistrationInput {
         this.age = age;
     }
 
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(final String height) {
+        this.height = height;
+    }
+
     @Override
     public String toString() {
         return "UserRegistrationInput{" +
                "firstName='" + firstName + '\'' +
                ", lastName='" + lastName + '\'' +
-               ", age=" + age +
+               ", age='" + age + '\'' +
+               ", height='" + height + '\'' +
                '}';
     }
 

@@ -30,6 +30,14 @@ public class UserRegistrationInputValidator implements Validator {
         } catch (final NumberFormatException e) {
             errors.rejectValue("age", "invalid.age.notNumber");
         }
+        try {
+            final float heightFloat = Float.parseFloat(user.getHeight());
+            if (heightFloat <= 0) {
+                errors.rejectValue("height", "invalid.height.lessThanZero");
+            }
+        } catch (final NumberFormatException e) {
+            errors.rejectValue("height", "invalid.height.notDecimal");
+        }
     }
 
 }
