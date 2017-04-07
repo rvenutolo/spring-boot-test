@@ -1,36 +1,43 @@
 package org.venutolo.spring.test.validation;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@PropertySource("file:validation.properties")
 public class DefaultUserRegistrationValidationConfig implements UserRegistrationValidationConfig {
 
-    private static final int FIRST_NAME_MAX_LENGTH = 10;
+    @Value("${firstName.maxLength}")
+    private int firstNameMaxLength;
 
-    private static final int LAST_NAME_MAX_LENGTH = 20;
+    @Value("${lastName.maxLength}")
+    private int lastNameMaxLength;
 
-    private static final int MIN_AGE = 18;
+    @Value("${age.minValue}")
+    private int minAge;
 
-    private static final int MAX_AGE = 55;
+    @Value("${age.maxValue}")
+    private int maxAge;
 
     @Override
     public int getFirstNameMaxLength() {
-        return FIRST_NAME_MAX_LENGTH;
+        return firstNameMaxLength;
     }
 
     @Override
     public int getLastNameMaxLength() {
-        return LAST_NAME_MAX_LENGTH;
+        return lastNameMaxLength;
     }
 
     @Override
     public int getMinAge() {
-        return MIN_AGE;
+        return minAge;
     }
 
     @Override
     public int getMaxAge() {
-        return MAX_AGE;
+        return maxAge;
     }
 
 }
