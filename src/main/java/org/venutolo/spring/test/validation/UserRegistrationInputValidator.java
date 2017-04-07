@@ -1,20 +1,30 @@
-package org.venutolo.spring.test.form;
+package org.venutolo.spring.test.validation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import org.venutolo.spring.test.form.UserRegistrationInput;
 
 @Component
 public class UserRegistrationInputValidator implements Validator {
 
-    private static final int FIRST_NAME_MAX_LENGTH = 10;
+    private final int firstNameMaxLength;
 
-    private static final int LAST_NAME_MAX_LENGTH = 20;
+    private final int lastNameMaxLength;
 
-    private static final int MIN_AGE = 18;
+    private final int minAge;
 
-    private static final int MAX_AGE = 50;
+    private final int maxAge;
+
+    @Autowired
+    public UserRegistrationInputValidator(final UserRegistrationValidationConfig config) {
+        this.firstNameMaxLength = config.getFirstNameMaxLength();
+        this.lastNameMaxLength = config.getLastNameMaxLength();
+        this.minAge = config.getMinAge();
+        this.maxAge = config.getMaxAge();
+    }
 
     @Override
     public boolean supports(final Class<?> clazz) {
@@ -29,25 +39,25 @@ public class UserRegistrationInputValidator implements Validator {
         validateAge(user.getAge(), errors);
         validateHeight(user.getHeight(), errors);    }
 
-    private static void validateFirstName(final String firstName, final Errors errors) {
+    private void validateFirstName(final String firstName, final Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "invalid.firstName.empty");
-        if (firstName.length() > FIRST_NAME_MAX_LENGTH) {
-            errors.rejectValue("firstName", "invalid.firstName.maxLength", new Object[]{FIRST_NAME_MAX_LENGTH}, "");
+        if (firstName.length() > firstNameMaxLength) {
+            errors.rejectValue("firstName", "invalid.firstName.maxLength", new Object[]{firstNameMaxLength}, "");
         }
     }
 
-    private static void validateLastName(final String lastName, final Errors errors) {
+    private void validateLastName(final String lastName, final Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "invalid.lastName.empty");
-        if (lastName.length() > LAST_NAME_MAX_LENGTH) {
-            errors.rejectValue("lastName", "invalid.lastName.maxLength", new Object[]{LAST_NAME_MAX_LENGTH}, "");
+        if (lastName.length() > lastNameMaxLength) {
+            errors.rejectValue("lastName", "invalid.lastName.maxLength", new Object[]{lastNameMaxLength}, "");
         }
     }
 
-    private static void validateAge(final String age, final Errors errors) {
+    private void validateAge(final String age, final Errors errors) {
         try {
             final int ageInt = Integer.parseInt(age);
-            if ((ageInt < MIN_AGE) || (ageInt > MAX_AGE)) {
-                errors.rejectValue("age", "invalid.age.minMax", new Object[]{MIN_AGE, MAX_AGE}, "");
+            if ((ageInt < minAge) || (ageInt > maxAge)) {
+                errors.rejectValue("age", "invalid.age.minMax", new Object[]{minAge, maxAge}, "");
             }
         } catch (final NumberFormatException e) {
             errors.rejectValue("age", "invalid.age.notNumber");
