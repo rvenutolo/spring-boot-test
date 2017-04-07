@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="copyright" th:text="'&copy; ' + ${#dates.year(#dates.createNow())} + ' ' + #{footer.copyrightCompany}">
+            &copy; 1999 A Company, Inc.
+        </div>
+    </body>
+</html>

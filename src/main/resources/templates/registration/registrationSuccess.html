@@ -12,5 +12,6 @@
         <p th:text="#{user.age.label} + ' ' + ${user.age}">age</p>
         <p th:text="#{user.height.label} + ' ' + ${user.height}">height</p>
         <a href="/register" th:text="#{success.register.another.text}">Register another user</a>
+        <div th:replace="fragments/footer :: copyright"></div>
     </body>
 </html>
