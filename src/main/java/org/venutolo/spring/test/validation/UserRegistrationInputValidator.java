@@ -1,5 +1,7 @@
 package org.venutolo.spring.test.validation;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -9,6 +11,8 @@ import org.venutolo.spring.test.form.UserRegistrationInput;
 
 @Component
 public class UserRegistrationInputValidator implements Validator {
+
+    private static final Log logger = LogFactory.getLog(UserRegistrationInputValidator.class);
 
     private final int firstNameMaxLength;
 
@@ -34,10 +38,15 @@ public class UserRegistrationInputValidator implements Validator {
     @Override
     public void validate(final Object target, final Errors errors) {
         final UserRegistrationInput user = (UserRegistrationInput) target;
+        logger.debug("Validating user: " + user);
         validateFirstName(user.getFirstName(), errors);
         validateLastName(user.getLastName(), errors);
         validateAge(user.getAge(), errors);
-        validateHeight(user.getHeight(), errors);    }
+        validateHeight(user.getHeight(), errors);
+        logger.debug(errors.hasErrors()
+                     ? ("User is invalid -- User: + " + user + "; Errors:" + errors)
+                     : ("User is valid -- User: + " + user));
+    }
 
     private void validateFirstName(final String firstName, final Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "invalid.firstName.empty");
