@@ -2,7 +2,7 @@ package org.venutolo.spring.test.form;
 
 import org.venutolo.spring.test.User;
 
-public class UserRegistrationInput {
+public class UserForm {
 
     private String firstName;
 
@@ -56,7 +56,7 @@ public class UserRegistrationInput {
 
     @Override
     public String toString() {
-        return "UserRegistrationInput{" +
+        return "UserForm{" +
                "firstName='" + firstName + '\'' +
                ", lastName='" + lastName + '\'' +
                ", age='" + age + '\'' +

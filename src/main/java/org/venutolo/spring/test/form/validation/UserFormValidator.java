@@ -1,4 +1,4 @@
-package org.venutolo.spring.test.validation;
+package org.venutolo.spring.test.form.validation;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import org.venutolo.spring.test.form.UserRegistrationInput;
+import org.venutolo.spring.test.form.UserForm;
 
 @Component
-public class UserRegistrationInputValidator implements Validator {
+public class UserFormValidator implements Validator {
 
-    private static final Log logger = LogFactory.getLog(UserRegistrationInputValidator.class);
+    private static final Log logger = LogFactory.getLog(UserFormValidator.class);
 
     private final int firstNameMaxLength;
 
@@ -23,7 +23,7 @@ public class UserRegistrationInputValidator implements Validator {
     private final int maxAge;
 
     @Autowired
-    public UserRegistrationInputValidator(final UserRegistrationValidationConfig config) {
+    public UserFormValidator(final UserFormValidationConfig config) {
         this.firstNameMaxLength = config.getFirstNameMaxLength();
         this.lastNameMaxLength = config.getLastNameMaxLength();
         this.minAge = config.getMinAge();
@@ -32,12 +32,12 @@ public class UserRegistrationInputValidator implements Validator {
 
     @Override
     public boolean supports(final Class<?> clazz) {
-        return UserRegistrationInput.class.isAssignableFrom(clazz);
+        return UserForm.class.isAssignableFrom(clazz);
     }
 
     @Override
     public void validate(final Object target, final Errors errors) {
-        final UserRegistrationInput user = (UserRegistrationInput) target;
+        final UserForm user = (UserForm) target;
         logger.debug("Validating user: " + user);
         validateFirstName(user.getFirstName(), errors);
         validateLastName(user.getLastName(), errors);

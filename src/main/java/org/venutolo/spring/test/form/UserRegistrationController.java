@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.venutolo.spring.test.validation.UserRegistrationInputValidator;
+import org.venutolo.spring.test.form.validation.UserFormValidator;
 
 @Controller
 @RequestMapping("/register")
@@ -18,31 +18,31 @@ public class UserRegistrationController {
 
     private static final Log logger = LogFactory.getLog(UserRegistrationController.class);
 
-    private final UserRegistrationInputValidator validator;
+    private final UserFormValidator validator;
 
     @Autowired
-    public UserRegistrationController(final UserRegistrationInputValidator validator) {
+    public UserRegistrationController(final UserFormValidator validator) {
         this.validator = validator;
     }
 
     @GetMapping
     public String registrationForm(final Model model) {
-        model.addAttribute("user", new UserRegistrationInput());
+        model.addAttribute("user", new UserForm());
         return "registration/registrationForm";
     }
 
     @PostMapping
     public String registrationSubmit(
-            @ModelAttribute("user") final UserRegistrationInput userRegistrationInput,
+            @ModelAttribute("user") final UserForm userForm,
             final Errors errors
     ) {
-        logger.debug("Submitted user: " + userRegistrationInput);
-        validator.validate(userRegistrationInput, errors);
+        logger.debug("Submitted user: " + userForm);
+        validator.validate(userForm, errors);
         if (errors.hasErrors()) {
-            logger.debug("User is invalid: " + userRegistrationInput);
+            logger.debug("User is invalid: " + userForm);
             return "registration/registrationForm";
         }
-        logger.debug("User is valid: " + userRegistrationInput);
+        logger.debug("User is valid: " + userForm);
         // TODO session status? set complete?
         return "registration/registrationSuccess";
     }

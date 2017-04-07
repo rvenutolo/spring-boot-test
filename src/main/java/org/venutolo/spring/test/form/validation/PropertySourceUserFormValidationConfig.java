@@ -1,4 +1,4 @@
-package org.venutolo.spring.test.validation;
+package org.venutolo.spring.test.form.validation;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @PropertySource("file:validation.properties")
-public class PropertySourceUserRegistrationValidationConfig implements UserRegistrationValidationConfig {
+public class PropertySourceUserFormValidationConfig implements UserFormValidationConfig {
 
     private final int firstNameMaxLength;
 
@@ -16,7 +16,7 @@ public class PropertySourceUserRegistrationValidationConfig implements UserRegis
 
     private final int maxAge;
 
-    public PropertySourceUserRegistrationValidationConfig(
+    public PropertySourceUserFormValidationConfig(
             @Value("${firstName.maxLength}") final int firstNameMaxLength,
             @Value("${lastName.maxLength}") final int lastNameMaxLength,
             @Value("${age.minValue}") final int minAge,
@@ -50,7 +50,7 @@ public class PropertySourceUserRegistrationValidationConfig implements UserRegis
 
     @Override
     public String toString() {
-        return "DefaultUserRegistrationValidationConfig{" +
+        return "PropertySourceUserFormValidationConfig{" +
                "firstNameMaxLength=" + firstNameMaxLength +
                ", lastNameMaxLength=" + lastNameMaxLength +
                ", minAge=" + minAge +
