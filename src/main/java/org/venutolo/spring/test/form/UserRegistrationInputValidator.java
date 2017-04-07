@@ -22,8 +22,13 @@ public class UserRegistrationInputValidator implements Validator {
         final UserRegistrationInput user = (UserRegistrationInput) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "error.firstName.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "error.lastName.empty");
-        if ((user.getAge() < MIN_AGE) || (user.getAge() > MAX_AGE)) {
-            errors.rejectValue("age", "error.age.minMax", new Object[]{MIN_AGE, MAX_AGE}, "");
+        try {
+            final int ageInt = Integer.parseInt(user.getAge());
+            if ((ageInt < MIN_AGE) || (ageInt > MAX_AGE)) {
+                errors.rejectValue("age", "error.age.minMax", new Object[]{MIN_AGE, MAX_AGE}, "");
+            }
+        } catch (final NumberFormatException e) {
+            errors.rejectValue("age", "error.age.notNumber");
         }
     }
 

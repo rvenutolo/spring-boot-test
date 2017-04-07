@@ -6,7 +6,7 @@ public class UserRegistrationInput {
 
     private String lastName;
 
-    private int age;
+    private String age;
 
     public String getFirstName() {
         return firstName;
@@ -24,11 +24,11 @@ public class UserRegistrationInput {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(final int age) {
+    public void setAge(final String age) {
         this.age = age;
     }
 
