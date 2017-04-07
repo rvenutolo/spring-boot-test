@@ -1,5 +1,7 @@
 package org.venutolo.spring.test.form;
 
+import org.venutolo.spring.test.User;
+
 public class UserRegistrationInput {
 
     private String firstName;
@@ -50,6 +52,15 @@ public class UserRegistrationInput {
                ", age='" + age + '\'' +
                ", height='" + height + '\'' +
                '}';
+    }
+
+    public User toUser() {
+        return new User(
+                firstName,
+                lastName,
+                Integer.parseInt(age),
+                Float.parseFloat(height)
+        );
     }
 
 }
