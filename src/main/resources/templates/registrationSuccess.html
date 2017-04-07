@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Spring Form Example -- Result</title>
+        <title th:text="#{success.title}">form title</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <h1>Result</h1>
-        <p th:text="'First name: &quot;' + ${user.firstName} + '&quot;'" />
-        <p th:text="'Last name: &quot;' + ${user.lastName} + '&quot;'" />
-        <p th:text="'Age: ' + ${user.age}" />
-        <a href="/form">Register another user</a>
+        <h1 th:text="#{success.header}">success header</h1>
+        <p th:text="#{user.firstName.label} + ' &quot;' + ${user.firstName} + '&quot;'" />
+        <p th:text="#{user.lastName.label} + ' &quot;' + ${user.lastName} + '&quot;'" />
+        <p th:text="#{user.age.label} + ' ' + ${user.age}" />
+        <a href="/register" th:text="#{success.register.another.text}">Register another user</a>
     </body>
 </html>
