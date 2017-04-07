@@ -6,12 +6,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <h1 th:text="#{success.header}">success header</h1>
-        <p th:text="#{user.firstName.label} + ' &quot;' + ${user.firstName} + '&quot;'">first name</p>
-        <p th:text="#{user.lastName.label} + ' &quot;' + ${user.lastName} + '&quot;'">last name</p>
-        <p th:text="#{user.age.label} + ' ' + ${user.age}">age</p>
-        <p th:text="#{user.height.label} + ' ' + ${user.height}">height</p>
-        <a href="/register" th:text="#{success.register.another.text}">Register another user</a>
-        <div th:replace="fragments/footer :: copyright"></div>
+        <div>
+            <h1 th:text="#{success.header}">success header</h1>
+            <div>
+                <p th:text="#{user.firstName.label} + ' &quot;' + ${user.firstName} + '&quot;'">first name</p>
+                <p th:text="#{user.lastName.label} + ' &quot;' + ${user.lastName} + '&quot;'">last name</p>
+                <p th:text="#{user.age.label} + ' ' + ${user.age}">age</p>
+                <p th:text="#{user.height.label} + ' ' + ${user.height}">height</p>
+            </div>
+            <a href="/register" th:text="#{success.register.another.text}">Register another user</a>
+        </div>
+        <div th:replace="fragments/footer::copyright"></div>
     </body>
 </html>
