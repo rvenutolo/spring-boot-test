@@ -13,13 +13,22 @@ public class User {
 
     private final float height;
 
+    private final boolean active;
+
     private final LocalDate registeredOn;
 
-    public User(final String firstName, final String lastName, final int age, final float height) {
+    public User(
+            final String firstName,
+            final String lastName,
+            final int age,
+            final float height,
+            final boolean active
+    ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.height = height;
+        this.active = active;
         this.registeredOn = LocalDate.now();
     }
 
@@ -39,8 +48,24 @@ public class User {
         return height;
     }
 
+    public boolean getActive() {
+        return active;
+    }
+
     public LocalDate getRegisteredOn() {
         return registeredOn;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+               "firstName='" + firstName + '\'' +
+               ", lastName='" + lastName + '\'' +
+               ", age=" + age +
+               ", height=" + height +
+               ", active=" + active +
+               ", registeredOn=" + registeredOn +
+               '}';
     }
 
     @Override
@@ -54,6 +79,7 @@ public class User {
         final User user = (User) o;
         return (age == user.age) &&
                (Float.compare(user.height, height) == 0) &&
+               (active == user.active) &&
                Objects.equals(firstName, user.firstName) &&
                Objects.equals(lastName, user.lastName) &&
                Objects.equals(registeredOn, user.registeredOn);
@@ -61,18 +87,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, age, height, registeredOn);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-               "firstName='" + firstName + '\'' +
-               ", lastName='" + lastName + '\'' +
-               ", age=" + age +
-               ", height=" + height +
-               ", registeredOn=" + registeredOn +
-               '}';
+        return Objects.hash(firstName, lastName, age, height, active, registeredOn);
     }
 
 }

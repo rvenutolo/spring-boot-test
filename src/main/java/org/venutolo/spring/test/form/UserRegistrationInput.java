@@ -12,6 +12,8 @@ public class UserRegistrationInput {
 
     private String height;
 
+    private boolean active = true;
+
     public String getFirstName() {
         return firstName;
     }
@@ -44,6 +46,14 @@ public class UserRegistrationInput {
         this.height = height;
     }
 
+    public boolean getActive() {
+        return active;
+    }
+
+    public void setActive(final boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "UserRegistrationInput{" +
@@ -51,6 +61,7 @@ public class UserRegistrationInput {
                ", lastName='" + lastName + '\'' +
                ", age='" + age + '\'' +
                ", height='" + height + '\'' +
+               ", active=" + active +
                '}';
     }
 
@@ -59,7 +70,8 @@ public class UserRegistrationInput {
                 firstName,
                 lastName,
                 Integer.parseInt(age),
-                Float.parseFloat(height)
+                Float.parseFloat(height),
+                active
         );
     }
 
