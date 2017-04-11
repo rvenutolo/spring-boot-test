@@ -44,26 +44,7 @@
             </table>
             <p><input type="submit" th:value="#{form.submit.button.text}" value="Submit"/> <input type="reset" th:value="#{form.reset.button.text}" value="Reset"/></p>
         </form>
-        <div>
-            <table>
-                <tr>
-                    <th th:text="#{user.firstName.label}">FIRST NAME</th>
-                    <th th:text="#{user.lastName.label}">LAST NAME</th>
-                    <th th:text="#{user.age.label}">AGE</th>
-                    <th th:text="#{user.height.label}">HEIGHT</th>
-                    <th th:text="#{user.active.label}">ACTIVE</th>
-                    <th th:text="#{user.registeredOn.label}">REGISTERED ON</th>
-                </tr>
-                <tr th:each="u : ${users}">
-                    <td th:text="${u.getFirstName()}">firstName</td>
-                    <td th:text="${u.getLastName()}">lastName</td>
-                    <td th:text="${u.getAge()}">age</td>
-                    <td th:text="${#numbers.formatDecimal(u.getHeight(), 1, 2)}">height</td>
-                    <td th:text="${u.getActive()} ? #{user.active.yes} : #{user.active.no}">active</td>
-                    <td th:text="${#temporals.format(u.getRegisteredOn(), 'MMM dd yyyy')}">registered on</td>
-                </tr>
-            </table>
-        </div>
+        <div th:replace="fragments/users::users"></div>
         <div th:replace="fragments/footer::copyright"></div>
     </body>
 </html>

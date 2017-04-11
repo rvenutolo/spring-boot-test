@@ -17,6 +17,7 @@
             </div>
             <a href="/register" th:text="#{success.register.another.text}">Register another user</a>
         </div>
+        <div th:replace="fragments/users::users"></div>
         <div th:replace="fragments/footer::copyright"></div>
     </body>
 </html>

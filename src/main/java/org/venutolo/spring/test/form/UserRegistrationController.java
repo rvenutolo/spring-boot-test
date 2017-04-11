@@ -40,12 +40,15 @@ public class UserRegistrationController {
     @PostMapping
     public String registrationSubmit(
             @ModelAttribute("user") final UserForm userForm,
+            final Model model,
             final Errors errors
     ) {
+        // TODO figure out a way not to add the users model attribute in three different places
         logger.debug("Submitted user form: " + userForm);
         validator.validate(userForm, errors);
         if (errors.hasErrors()) {
             logger.debug("User form is invalid: " + userForm);
+            model.addAttribute("users", service.getUsers());
             return "registration/registrationForm";
         }
         logger.debug("User form is valid: " + userForm);
@@ -53,10 +56,12 @@ public class UserRegistrationController {
         final boolean userAdded = service.addUser(user);
         if (userAdded) {
             logger.debug("Added user:  " + user);
+            model.addAttribute("users", service.getUsers());
             return "registration/registrationSuccess";
         } else {
             logger.debug("User already exists: " + user);
             errors.reject("invalid.user.exists");
+            model.addAttribute("users", service.getUsers());
             return "registration/registrationForm";
         }
     }
