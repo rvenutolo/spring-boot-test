@@ -22,14 +22,25 @@ public class User {
             final String lastName,
             final int age,
             final float height,
-            final boolean active
+            final boolean active,
+            final LocalDate registeredOn
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.height = height;
         this.active = active;
-        this.registeredOn = LocalDate.now();
+        this.registeredOn = registeredOn;
+    }
+
+    public User(
+            final String firstName,
+            final String lastName,
+            final int age,
+            final float height,
+            final boolean active
+    ) {
+        this(firstName, lastName, age, height, active, LocalDate.now());
     }
 
     public String getFirstName() {
