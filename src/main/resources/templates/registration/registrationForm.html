@@ -59,7 +59,7 @@
                     <td th:text="${u.getLastName()}">lastName</td>
                     <td th:text="${u.getAge()}">age</td>
                     <td th:text="${#numbers.formatDecimal(u.getHeight(), 1, 2)}">height</td>
-                    <td th:text="${u.getActive() ? 'yes' : 'no'}">active</td>
+                    <td th:text="${u.getActive()} ? #{user.active.yes} : #{user.active.no}">active</td>
                     <td th:text="${#temporals.format(u.getRegisteredOn(), 'MMM dd yyyy')}">registered on</td>
                 </tr>
             </table>
