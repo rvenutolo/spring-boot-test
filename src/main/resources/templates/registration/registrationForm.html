@@ -11,6 +11,9 @@
         <form action="#" th:action="@{/register}" th:object="${user}" method="post">
             <div th:if="${#fields.hasAnyErrors()}">
                 <h3 th:text="#{form.error.header}" class="error">error header</h3>
+                <div th:each="globalError : ${#fields.globalErrors()}">
+                    <h4 th:text="${globalError}" class="error">global error</h4>
+                </div>
             </div>
             <table>
                 <tr>
