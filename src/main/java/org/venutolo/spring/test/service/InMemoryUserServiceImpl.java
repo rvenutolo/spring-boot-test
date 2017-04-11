@@ -5,18 +5,16 @@ import org.venutolo.spring.test.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 @Service
 public class InMemoryUserServiceImpl implements UserService {
 
-    private final Set<User> users;
+    private final List<User> users;
 
     public InMemoryUserServiceImpl() {
-        this.users = new HashSet<>();
+        this.users = new ArrayList<>();
         final Random random = new Random();
         final LocalDate now = LocalDate.now();
         final int randomIntBound = 30;
@@ -34,8 +32,8 @@ public class InMemoryUserServiceImpl implements UserService {
                 24,
                 1.549184378531f,
                 true,
-                now.minusDays(random.nextInt(randomIntBound)))
-        );
+                now.minusDays(random.nextInt(randomIntBound))
+        ));
         users.add(new User(
                 "Karl",
                 "Dandelton",
@@ -64,7 +62,19 @@ public class InMemoryUserServiceImpl implements UserService {
 
     @Override
     public boolean addUser(final User user) {
-        return users.add(user);
+        // simulate check for DB unique constraint(s)
+        final boolean userExists =
+                users.stream()
+                     .anyMatch(
+                             u -> u.getFirstName().equalsIgnoreCase(user.getFirstName()) &&
+                                  u.getLastName().equalsIgnoreCase(user.getLastName())
+                     );
+        if (userExists) {
+            return false;
+        } else {
+            users.add(user);
+            return true;
+        }
     }
 
     @Override
