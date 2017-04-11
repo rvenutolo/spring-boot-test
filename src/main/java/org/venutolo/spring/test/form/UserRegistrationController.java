@@ -33,6 +33,7 @@ public class UserRegistrationController {
     @GetMapping
     public String registrationForm(final Model model) {
         model.addAttribute("user", new UserForm());
+        model.addAttribute("users", service.getUsers());
         return "registration/registrationForm";
     }
 
