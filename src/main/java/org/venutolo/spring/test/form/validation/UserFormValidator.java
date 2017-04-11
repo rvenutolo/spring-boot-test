@@ -43,9 +43,11 @@ public class UserFormValidator implements Validator {
         validateLastName(user.getLastName(), errors);
         validateAge(user.getAge(), errors);
         validateHeight(user.getHeight(), errors);
-        logger.debug(errors.hasErrors()
-                     ? ("User is invalid -- User: + " + user + "; Errors:" + errors)
-                     : ("User is valid -- User: + " + user));
+        logger.debug(
+                errors.hasErrors()
+                ? ("User is invalid -- User: + " + user + "; Errors:" + errors)
+                : ("User is valid -- User: + " + user)
+        );
     }
 
     private void validateFirstName(final String firstName, final Errors errors) {
