@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <body>
         <div th:fragment="users">
-            <h3>USERS:::</h3>
+            <h3 th:text="#{users.header}">USERS</h3>
             <table>
                 <tr>
                     <th th:text="#{user.firstName.label}">FIRST NAME</th>
