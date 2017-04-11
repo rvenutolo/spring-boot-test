@@ -2,6 +2,7 @@ form input.error {
     border-color: red;
 }
 
-form h3.error {
+form h3.error,
+form h4.error {
     color: red;
 }
