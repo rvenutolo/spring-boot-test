@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <body>
         <div th:fragment="header-img" >
-            <img src="img/header.jpg"></img>
+            <img th:src="@{/img/header.jpg}" src="../../static/img/header.jpg"></img>
         </div>
     </body>
 </html>
