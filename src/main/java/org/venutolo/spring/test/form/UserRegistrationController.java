@@ -22,6 +22,10 @@ import javax.validation.Valid;
 @RequestMapping("/register")
 public class UserRegistrationController {
 
+    private static final String FORM_VIEW = "registration/registrationForm";
+
+    private static final String SUCCESS_VIEW = "registration/registrationSuccess";
+
     private static final Log logger = LogFactory.getLog(UserRegistrationController.class);
 
     private final UserFormValidator validator;
@@ -41,7 +45,7 @@ public class UserRegistrationController {
 
     @GetMapping
     public ModelAndView registrationForm() {
-        final ModelAndView modelAndView = new ModelAndView("registration/registrationForm");
+        final ModelAndView modelAndView = new ModelAndView(FORM_VIEW);
         modelAndView.addObject("user", new UserForm());
         modelAndView.addObject("users", service.getUsers());
         return modelAndView;
@@ -53,23 +57,24 @@ public class UserRegistrationController {
             final BindingResult bindingResult
     ) {
         logger.debug("Submitted user form: " + userForm);
-        final ModelAndView modelAndView;
+        final String view;
         if (bindingResult.hasErrors()) {
             logger.debug("User form is invalid: " + userForm);
-            modelAndView = new ModelAndView("registration/registrationForm");
+            view = FORM_VIEW;
         } else {
             logger.debug("User form is valid: " + userForm);
             final User user = userForm.toUser();
             final boolean userAdded = service.addUser(user);
             if (userAdded) {
                 logger.debug("Added user:  " + user);
-                modelAndView = new ModelAndView("registration/registrationSuccess");
+                view = SUCCESS_VIEW;
             } else {
                 logger.debug("User already exists: " + user);
                 bindingResult.reject("invalid.user.exists");
-                modelAndView = new ModelAndView("registration/registrationForm");
+                view = FORM_VIEW;
             }
         }
+        final ModelAndView modelAndView = new ModelAndView(view);
         modelAndView.addObject("users", service.getUsers());
         return modelAndView;
     }
