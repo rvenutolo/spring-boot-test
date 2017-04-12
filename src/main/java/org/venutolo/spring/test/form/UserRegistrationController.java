@@ -5,14 +5,18 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.venutolo.spring.test.User;
 import org.venutolo.spring.test.form.validation.UserFormValidator;
 import org.venutolo.spring.test.service.UserService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/register")
@@ -30,6 +34,11 @@ public class UserRegistrationController {
         this.service = service;
     }
 
+    @InitBinder
+    public void initBinder(final WebDataBinder webDataBinder) {
+        webDataBinder.setValidator(validator);
+    }
+
     @GetMapping
     public String registrationForm(final Model model) {
         model.addAttribute("user", new UserForm());
@@ -39,14 +48,13 @@ public class UserRegistrationController {
 
     @PostMapping
     public String registrationSubmit(
-            @ModelAttribute("user") final UserForm userForm,
+            @ModelAttribute("user") @Valid final UserForm userForm,
             final Model model,
-            final Errors errors
+            final BindingResult bindingResult
     ) {
         // TODO figure out a way not to add the users model attribute in three different places
         logger.debug("Submitted user form: " + userForm);
-        validator.validate(userForm, errors);
-        if (errors.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             logger.debug("User form is invalid: " + userForm);
             model.addAttribute("users", service.getUsers());
             return "registration/registrationForm";
@@ -60,7 +68,7 @@ public class UserRegistrationController {
             return "registration/registrationSuccess";
         } else {
             logger.debug("User already exists: " + user);
-            errors.reject("invalid.user.exists");
+            bindingResult.reject("invalid.user.exists");
             model.addAttribute("users", service.getUsers());
             return "registration/registrationForm";
         }
