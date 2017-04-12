@@ -4,7 +4,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.venutolo.spring.test.User;
 import org.venutolo.spring.test.form.validation.UserFormValidator;
 import org.venutolo.spring.test.service.UserService;
@@ -40,38 +40,38 @@ public class UserRegistrationController {
     }
 
     @GetMapping
-    public String registrationForm(final Model model) {
-        model.addAttribute("user", new UserForm());
-        model.addAttribute("users", service.getUsers());
-        return "registration/registrationForm";
+    public ModelAndView registrationForm() {
+        final ModelAndView modelAndView = new ModelAndView("registration/registrationForm");
+        modelAndView.addObject("user", new UserForm());
+        modelAndView.addObject("users", service.getUsers());
+        return modelAndView;
     }
 
     @PostMapping
-    public String registrationSubmit(
+    public ModelAndView registrationSubmit(
             @ModelAttribute("user") @Valid final UserForm userForm,
-            final Model model,
             final BindingResult bindingResult
     ) {
-        // TODO figure out a way not to add the users model attribute in three different places
         logger.debug("Submitted user form: " + userForm);
+        final ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             logger.debug("User form is invalid: " + userForm);
-            model.addAttribute("users", service.getUsers());
-            return "registration/registrationForm";
-        }
-        logger.debug("User form is valid: " + userForm);
-        final User user = userForm.toUser();
-        final boolean userAdded = service.addUser(user);
-        if (userAdded) {
-            logger.debug("Added user:  " + user);
-            model.addAttribute("users", service.getUsers());
-            return "registration/registrationSuccess";
+            modelAndView = new ModelAndView("registration/registrationForm");
         } else {
-            logger.debug("User already exists: " + user);
-            bindingResult.reject("invalid.user.exists");
-            model.addAttribute("users", service.getUsers());
-            return "registration/registrationForm";
+            logger.debug("User form is valid: " + userForm);
+            final User user = userForm.toUser();
+            final boolean userAdded = service.addUser(user);
+            if (userAdded) {
+                logger.debug("Added user:  " + user);
+                modelAndView = new ModelAndView("registration/registrationSuccess");
+            } else {
+                logger.debug("User already exists: " + user);
+                bindingResult.reject("invalid.user.exists");
+                modelAndView = new ModelAndView("registration/registrationForm");
+            }
         }
+        modelAndView.addObject("users", service.getUsers());
+        return modelAndView;
     }
 
 }
