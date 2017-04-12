@@ -70,7 +70,7 @@ public class UserFormValidator implements Validator {
             if ((ageInt < minAge) || (ageInt > maxAge)) {
                 errors.rejectValue("age", "invalid.age.minMax", new Object[]{minAge, maxAge}, "");
             }
-        } catch (final NumberFormatException e) {
+        } catch (final NumberFormatException ignore) {
             errors.rejectValue("age", "invalid.age.notNumber");
         }
     }
@@ -81,7 +81,7 @@ public class UserFormValidator implements Validator {
             if (heightFloat <= 0) {
                 errors.rejectValue("height", "invalid.height.lessThanZero");
             }
-        } catch (final NumberFormatException e) {
+        } catch (final NumberFormatException ignore) {
             errors.rejectValue("height", "invalid.height.notDecimal");
         }
     }
