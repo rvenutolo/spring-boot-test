@@ -22,9 +22,9 @@ import javax.validation.Valid;
 @RequestMapping("/register")
 public class RegistrationController {
 
-    private static final String FORM_VIEW = "registration/registrationForm";
+    private static final String FORM_VIEW = "registration/form";
 
-    private static final String SUCCESS_VIEW = "registration/registrationSuccess";
+    private static final String SUCCESS_VIEW = "registration/success";
 
     private static final Log logger = LogFactory.getLog(RegistrationController.class);
 
