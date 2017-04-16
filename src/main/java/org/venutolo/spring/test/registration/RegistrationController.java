@@ -46,24 +46,24 @@ public class RegistrationController {
     @GetMapping
     public ModelAndView registrationForm() {
         final ModelAndView modelAndView = new ModelAndView(FORM_VIEW);
-        modelAndView.addObject("user", new UserForm());
+        modelAndView.addObject("user", new UserRegistration());
         modelAndView.addObject("users", service.getUsers());
         return modelAndView;
     }
 
     @PostMapping
     public ModelAndView registrationSubmit(
-            @ModelAttribute("user") @Valid final UserForm userForm,
+            @ModelAttribute("user") @Valid final UserRegistration userRegistration,
             final BindingResult bindingResult
     ) {
-        logger.debug("Submitted user form: " + userForm);
+        logger.debug("Submitted user registration: " + userRegistration);
         final String view;
         if (bindingResult.hasErrors()) {
-            logger.debug("User form is invalid: " + userForm);
+            logger.debug("User registration is invalid: " + userRegistration);
             view = FORM_VIEW;
         } else {
-            logger.debug("User form is valid: " + userForm);
-            final User user = userForm.toUser();
+            logger.debug("User registration is valid: " + userRegistration);
+            final User user = userRegistration.toUser();
             final boolean userAdded = service.addUser(user);
             if (userAdded) {
                 logger.debug("Added user:  " + user);

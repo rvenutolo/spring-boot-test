@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import org.venutolo.spring.test.registration.UserForm;
+import org.venutolo.spring.test.registration.UserRegistration;
 
 @Component
 public class UserFormValidator implements Validator {
@@ -32,21 +32,21 @@ public class UserFormValidator implements Validator {
 
     @Override
     public boolean supports(final Class<?> clazz) {
-        return UserForm.class.isAssignableFrom(clazz);
+        return UserRegistration.class.isAssignableFrom(clazz);
     }
 
     @Override
     public void validate(final Object target, final Errors errors) {
-        final UserForm user = (UserForm) target;
-        logger.debug("Validating user: " + user);
-        validateFirstName(user.getFirstName(), errors);
-        validateLastName(user.getLastName(), errors);
-        validateAge(user.getAge(), errors);
-        validateHeight(user.getHeight(), errors);
+        final UserRegistration userRegistration = (UserRegistration) target;
+        logger.debug("Validating user registration: " + userRegistration);
+        validateFirstName(userRegistration.getFirstName(), errors);
+        validateLastName(userRegistration.getLastName(), errors);
+        validateAge(userRegistration.getAge(), errors);
+        validateHeight(userRegistration.getHeight(), errors);
         logger.debug(
                 errors.hasErrors()
-                ? ("User is invalid -- User: + " + user + "; Errors:" + errors)
-                : ("User is valid -- User: + " + user)
+                ? ("User registration is invalid -- User registration: + " + userRegistration + "; Errors:" + errors)
+                : ("User registration is valid -- User registration: + " + userRegistration)
         );
     }
 
