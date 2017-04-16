@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @PropertySource("file:validation.properties")
-public class PropertySourceUserFormValidationConfig implements UserFormValidationConfig {
+public class PropertySourceUserFormValidatorConfig implements UserFormValidatorConfig {
 
     private final int firstNameMaxLength;
 
@@ -16,7 +16,7 @@ public class PropertySourceUserFormValidationConfig implements UserFormValidatio
 
     private final int maxAge;
 
-    public PropertySourceUserFormValidationConfig(
+    public PropertySourceUserFormValidatorConfig(
             @Value("${firstName.maxLength}") final int firstNameMaxLength,
             @Value("${lastName.maxLength}") final int lastNameMaxLength,
             @Value("${age.minValue}") final int minAge,
@@ -50,7 +50,7 @@ public class PropertySourceUserFormValidationConfig implements UserFormValidatio
 
     @Override
     public String toString() {
-        return "PropertySourceUserFormValidationConfig{" +
+        return "PropertySourceUserFormValidatorConfig{" +
                "firstNameMaxLength=" + firstNameMaxLength +
                ", lastNameMaxLength=" + lastNameMaxLength +
                ", minAge=" + minAge +
