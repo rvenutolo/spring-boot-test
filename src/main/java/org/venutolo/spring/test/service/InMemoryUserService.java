@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class InMemoryUserServiceImpl implements UserService {
+public class InMemoryUserService implements UserService {
 
     private final List<User> users;
 
-    public InMemoryUserServiceImpl() {
+    public InMemoryUserService() {
         this.users = new ArrayList<>();
         final Random random = new Random();
         final LocalDate now = LocalDate.now();
