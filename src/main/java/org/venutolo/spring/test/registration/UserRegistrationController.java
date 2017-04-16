@@ -1,4 +1,4 @@
-package org.venutolo.spring.test.form;
+package org.venutolo.spring.test.registration;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.venutolo.spring.test.User;
-import org.venutolo.spring.test.form.validation.UserFormValidator;
+import org.venutolo.spring.test.registration.validation.UserFormValidator;
 import org.venutolo.spring.test.service.UserService;
 
 import javax.validation.Valid;

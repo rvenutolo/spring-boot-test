@@ -1,4 +1,4 @@
-package org.venutolo.spring.test.form;
+package org.venutolo.spring.test.registration;
 
 import org.venutolo.spring.test.User;
 

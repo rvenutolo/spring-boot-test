@@ -1,4 +1,4 @@
-package org.venutolo.spring.test.form.validation;
+package org.venutolo.spring.test.registration.validation;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import org.venutolo.spring.test.form.UserForm;
+import org.venutolo.spring.test.registration.UserForm;
 
 @Component
 public class UserFormValidator implements Validator {

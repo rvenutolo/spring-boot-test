@@ -1,4 +1,4 @@
-package org.venutolo.spring.test.form.validation;
+package org.venutolo.spring.test.registration.validation;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;

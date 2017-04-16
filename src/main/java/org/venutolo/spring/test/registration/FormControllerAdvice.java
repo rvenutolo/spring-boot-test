@@ -1,4 +1,4 @@
-package org.venutolo.spring.test.form;
+package org.venutolo.spring.test.registration;
 
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.web.bind.WebDataBinder;
