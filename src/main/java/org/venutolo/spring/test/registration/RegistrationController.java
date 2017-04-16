@@ -20,20 +20,20 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/register")
-public class UserRegistrationController {
+public class RegistrationController {
 
     private static final String FORM_VIEW = "registration/registrationForm";
 
     private static final String SUCCESS_VIEW = "registration/registrationSuccess";
 
-    private static final Log logger = LogFactory.getLog(UserRegistrationController.class);
+    private static final Log logger = LogFactory.getLog(RegistrationController.class);
 
     private final UserFormValidator validator;
 
     private final UserService service;
 
     @Autowired
-    public UserRegistrationController(final UserFormValidator validator, final UserService service) {
+    public RegistrationController(final UserFormValidator validator, final UserService service) {
         this.validator = validator;
         this.service = service;
     }
