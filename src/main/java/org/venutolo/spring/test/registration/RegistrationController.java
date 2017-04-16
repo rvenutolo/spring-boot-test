@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.venutolo.spring.test.User;
-import org.venutolo.spring.test.registration.validation.UserFormValidator;
+import org.venutolo.spring.test.registration.validation.UserRegistrationValidator;
 import org.venutolo.spring.test.service.UserService;
 
 import javax.validation.Valid;
@@ -28,12 +28,12 @@ public class RegistrationController {
 
     private static final Log logger = LogFactory.getLog(RegistrationController.class);
 
-    private final UserFormValidator validator;
+    private final UserRegistrationValidator validator;
 
     private final UserService service;
 
     @Autowired
-    public RegistrationController(final UserFormValidator validator, final UserService service) {
+    public RegistrationController(final UserRegistrationValidator validator, final UserService service) {
         this.validator = validator;
         this.service = service;
     }

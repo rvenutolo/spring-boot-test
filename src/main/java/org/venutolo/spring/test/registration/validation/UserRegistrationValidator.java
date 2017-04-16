@@ -10,9 +10,9 @@ import org.springframework.validation.Validator;
 import org.venutolo.spring.test.registration.UserRegistration;
 
 @Component
-public class UserFormValidator implements Validator {
+public class UserRegistrationValidator implements Validator {
 
-    private static final Log logger = LogFactory.getLog(UserFormValidator.class);
+    private static final Log logger = LogFactory.getLog(UserRegistrationValidator.class);
 
     private final int firstNameMaxLength;
 
@@ -23,7 +23,7 @@ public class UserFormValidator implements Validator {
     private final int maxAge;
 
     @Autowired
-    public UserFormValidator(final UserFormValidatorConfig config) {
+    public UserRegistrationValidator(final UserFormValidatorConfig config) {
         this.firstNameMaxLength = config.getFirstNameMaxLength();
         this.lastNameMaxLength = config.getLastNameMaxLength();
         this.minAge = config.getMinAge();
