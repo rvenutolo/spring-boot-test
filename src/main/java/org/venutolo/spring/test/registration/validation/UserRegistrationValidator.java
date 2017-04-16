@@ -23,7 +23,7 @@ public class UserRegistrationValidator implements Validator {
     private final int maxAge;
 
     @Autowired
-    public UserRegistrationValidator(final UserFormValidatorConfig config) {
+    public UserRegistrationValidator(final UserRegistrationValidatorConfig config) {
         this.firstNameMaxLength = config.getFirstNameMaxLength();
         this.lastNameMaxLength = config.getLastNameMaxLength();
         this.minAge = config.getMinAge();

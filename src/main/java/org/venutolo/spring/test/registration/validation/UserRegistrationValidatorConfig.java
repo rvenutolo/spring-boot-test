@@ -1,6 +1,6 @@
 package org.venutolo.spring.test.registration.validation;
 
-public interface UserFormValidatorConfig {
+public interface UserRegistrationValidatorConfig {
 
     int getFirstNameMaxLength();
 
