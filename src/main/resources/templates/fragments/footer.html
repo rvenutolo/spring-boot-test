@@ -4,5 +4,6 @@
         <div th:fragment="copyright" th:text="'&copy; ' + ${#dates.year(#dates.createNow())} + ' ' + #{footer.copyrightCompany}">
             &copy; 1999 A Company, Inc.
         </div>
+        <div th:fragment="version" th:text="'version: ' + ${version}"></div>
     </body>
 </html>

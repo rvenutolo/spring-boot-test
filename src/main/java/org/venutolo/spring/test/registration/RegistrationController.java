@@ -43,6 +43,12 @@ public class RegistrationController {
         webDataBinder.setValidator(validator);
     }
 
+    @ModelAttribute("version")
+    public String getVersion() {
+        // when not running from jar, this will be null
+        return getClass().getPackage().getImplementationVersion();
+    }
+
     @GetMapping
     public ModelAndView registrationForm() {
         final ModelAndView modelAndView = new ModelAndView(FORM_VIEW);
