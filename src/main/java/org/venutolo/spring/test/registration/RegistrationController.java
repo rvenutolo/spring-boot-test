@@ -17,6 +17,8 @@ import org.venutolo.spring.test.registration.validation.UserRegistrationValidato
 import org.venutolo.spring.test.service.UserService;
 
 import javax.validation.Valid;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @Controller
 @RequestMapping("/register")
@@ -47,6 +49,16 @@ public class RegistrationController {
     public String getVersion() {
         // when not running from jar, this will be null
         return getClass().getPackage().getImplementationVersion();
+    }
+
+    @ModelAttribute("hostAddress")
+    public String getHostAddress() {
+        try {
+            return InetAddress.getLocalHost().getHostAddress();
+        } catch (final UnknownHostException e) {
+            logger.warn("Unable to get host address", e);
+            return null;
+        }
     }
 
     @GetMapping
