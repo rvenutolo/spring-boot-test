@@ -6,5 +6,6 @@
         </div>
         <div th:fragment="version" th:if="${version != null}" th:text="'version: ' + ${version}"></div>
         <div th:fragment="hostAddress" th:if="${hostAddress != null}" th:text="'host: ' + ${hostAddress}"></div>
+        <div th:fragment="requestAddress" th:text="'request address: ' + ${#httpServletRequest.getRemoteAddr()}"></div>
     </body>
 </html>
